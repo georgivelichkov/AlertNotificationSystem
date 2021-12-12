@@ -1,0 +1,8 @@
+{
+  "xsappname":"mini-alert-notification-service",
+  "scopes":[
+    {"name":"$XSAPPNAME.event.service-producer","description":"Event producer"},
+    {"name":"$XSAPPNAME.event.service-consumer","description":"Event consumer"}
+  ],
+  "authorities":["$XSAPPNAME.event.service-producer","$XSAPPNAME.event.service-consumer"]
+}

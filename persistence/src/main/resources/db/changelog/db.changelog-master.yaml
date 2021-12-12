@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+<changeSet author="i508773 (generated)" id="1552925008888-1">
+<createSequence sequenceName="action_id_seq"/>
+</changeSet>
+<changeSet author="i508773 (generated)" id="1552925008888-2">
+<createSequence sequenceName="condition_id_seq"/>
+</changeSet>
+<changeSet author="i508773 (generated)" id="1552925008888-3">
+<createSequence sequenceName="subscription_id_seq"/>
+</changeSet>
+<changeSet author="i508773 (generated)" id="1552925008888-4">
+<createTable tableName="action">
+<column autoIncrement="true" name="id" type="SERIAL">
+<constraints primaryKey="true" primaryKeyName="action_pkey"/>
+</column>
+<column name="attribute" type="VARCHAR(255)"/>
+<column name="description" type="VARCHAR(255)"/>
+<column name="name" type="VARCHAR(255)"/>
+<column name="type" type="VARCHAR(8)"/>
+</createTable>
+</changeSet>
+<changeSet author="i508773 (generated)" id="1552925008888-5">
+<createTable tableName="condition">
+<column autoIncrement="true" name="id" type="SERIAL">
+<constraints primaryKey="true" primaryKeyName="condition_pkey"/>
+</column>
+<column name="name" type="VARCHAR(255)">
+<constraints nullable="false"/>
+</column>
+<column name="predicate" type="VARCHAR(8)">
+<constraints nullable="false"/>
+</column>
+<column name="value" type="VARCHAR(255)">
+<constraints nullable="false"/>
+</column>
+</createTable>
+</changeSet>
+<changeSet author="i508773 (generated)" id="1552925008888-6">
+<createTable tableName="subscription">
+<column autoIncrement="true" name="id" type="SERIAL">
+<constraints primaryKey="true" primaryKeyName="subscription_pkey"/>
+</column>
+<column name="name" type="VARCHAR(255)"/>
+</createTable>
+</changeSet>
+<changeSet author="i508773 (generated)" id="1552925008888-7">
+<createTable tableName="subscription_actions">
+<column name="subscription_id" type="INT">
+<constraints nullable="false"/>
+</column>
+<column name="action_id" type="INT">
+<constraints nullable="false"/>
+</column>
+</createTable>
+</changeSet>
+<changeSet author="i508773 (generated)" id="1552925008888-8">
+<createTable tableName="subscription_conditions">
+<column name="subscription_id" type="INT">
+<constraints nullable="false"/>
+</column>
+<column name="condition_id" type="INT">
+<constraints nullable="false"/>
+</column>
+</createTable>
+</changeSet>
+<changeSet author="i508773 (generated)" id="1552925008888-9">
+<addForeignKeyConstraint baseColumnNames="subscription_id" baseTableName="subscription_actions" constraintName="fk3tw7bc73gka2n16jvaoo1lrah" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="subscription"/>
+</changeSet>
+<changeSet author="i508773 (generated)" id="1552925008888-10">
+<addForeignKeyConstraint baseColumnNames="action_id" baseTableName="subscription_actions" constraintName="fkeuwhhqaiexd3mvvpcx5r93ian" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="action"/>
+</changeSet>
+<changeSet author="i508773 (generated)" id="1552925008888-11">
+<addForeignKeyConstraint baseColumnNames="condition_id" baseTableName="subscription_conditions" constraintName="fkgbxqm58j05pggq7krqxgqap3f" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="condition"/>
+</changeSet>
+<changeSet author="i508773 (generated)" id="1552925008888-12">
+<addForeignKeyConstraint baseColumnNames="subscription_id" baseTableName="subscription_conditions" constraintName="fklec4hnjulyxdqw9rksmgsico6" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="subscription"/>
+</changeSet>
+</databaseChangeLog>
